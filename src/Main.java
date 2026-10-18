@@ -1,4 +1,3 @@
-//task 1
 public class Main {
     static void main() {
         leapYear(2021);
@@ -8,8 +7,11 @@ public class Main {
         int year = 2026;
         int clientDeviceYear = 2015;
         int deliveryDistance = 95;
-        operatinSystem.applicationInstallation(ios, year, clientDeviceYear);
-        operatinSystem.applicationInstallation(android, year, clientDeviceYear);
+        OperatingSystem.installApplication(ios, year, clientDeviceYear);
+        OperatingSystem.installApplication(android, year, clientDeviceYear);
+        clientDeviceYear = year;
+        OperatingSystem.installApplication(ios, year, clientDeviceYear);
+        OperatingSystem.installApplication(android, year, clientDeviceYear);
         int days = delivery(deliveryDistance);
         System.out.println("Потребуется дней: " + days);
     }
@@ -31,17 +33,17 @@ public class Main {
             return -1;
         }
     }
-    }
-    class operatinSystem {
-        static void applicationInstallation(int os, int year, int clientDeviceYear) {
-            if (year < clientDeviceYear && os == 0) {
-                System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-            } else if (year < clientDeviceYear && os == 1) {
-                System.out.println("Установите облегченную версию приложения для Android по ссылке");
-            } else if (year >= clientDeviceYear && os == 1) {
-                System.out.println("Установите обычную версию приложения для Android по ссылке");
-            } else if (year >= clientDeviceYear && os == 0) {
-                System.out.println("Установите обычную версию приложения для iOS по ссылке");
-            }
+}
+class OperatingSystem {
+    static void installApplication(int os, int year, int clientDeviceYear) {
+        if (clientDeviceYear < year && os == 0) {
+            System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+        } else if (clientDeviceYear < year && os == 1) {
+            System.out.println("Установите облегченную версию приложения для Android по ссылке");
+        } else if (clientDeviceYear >= year && os == 1) {
+            System.out.println("Установите обычную версию приложения для Android по ссылке");
+        } else if (clientDeviceYear >= year && os == 0) {
+            System.out.println("Установите обычную версию приложения для iOS по ссылке");
         }
     }
+}
